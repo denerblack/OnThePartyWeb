@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_foursquare: MyString
+  name: MyString
+  plural_name: MyString
+  short_name: MyString
+  icon_prefix: MyString
+  icon_name: MyString
+
+two:
+  id_foursquare: MyString
+  name: MyString
+  plural_name: MyString
+  short_name: MyString
+  icon_prefix: MyString
+  icon_name: MyString
