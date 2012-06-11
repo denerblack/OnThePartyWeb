@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(:version => 20120611023656) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "categories_venues", :force => true do |t|
+    t.integer "category_id"
+    t.integer "venue_id"
+  end
+
   create_table "venues", :force => true do |t|
     t.string   "id_foursquare"
     t.string   "name"
@@ -34,11 +39,6 @@ ActiveRecord::Schema.define(:version => 20120611023656) do
     t.string   "country"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-  end
-
-  create_table "venues_categories", :force => true do |t|
-    t.integer "category_id"
-    t.integer "venue_id"
   end
 
 end
