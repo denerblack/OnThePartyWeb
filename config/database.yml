@@ -28,6 +28,3 @@ production:
   password: opt2012
   host: mysql.denerblack.com.br
   encoding: utf8
-  pool: 5
-  timeout: 5000
-  port: 3306
