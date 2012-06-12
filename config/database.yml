@@ -22,7 +22,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  database: on_the_party
+  username: adminotp
+  password: opt2012
+  host: mysql.denerblack.com.br
+  encoding: utf8
   pool: 5
   timeout: 5000
