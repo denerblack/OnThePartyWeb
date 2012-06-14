@@ -34,3 +34,4 @@ rerun.txt
 pickle-email-*.html
 schema.rb
 .DS_Store
+config/database.yml
