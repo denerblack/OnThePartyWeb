@@ -1,4 +1,6 @@
 OnTheParty::Application.routes.draw do
+  root :to => 'home#index'
+
  # get "venues/find_by_id_foursquare"
   resources :venues
   namespace :api do
@@ -54,9 +56,6 @@ OnTheParty::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
