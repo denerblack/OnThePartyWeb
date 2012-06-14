@@ -28,4 +28,4 @@ production:
   password: opt2012
   host: mysql.denerblack.com.br
   encoding: utf8
-  socket: /tmp/mysql.sock
+  #socket: /tmp/mysql.sock
