@@ -1,4 +1,6 @@
 OnTheParty::Application.routes.draw do
+  match "random-login" => "users#random_login", :as => :random_login
+
   root :to => 'home#index'
 
  # get "venues/find_by_id_foursquare"

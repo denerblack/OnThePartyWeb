@@ -1,4 +1,10 @@
-rails g model venue ... --force
+rails g model User name:string email:string password:string facebook:string twitter:string latitude:float longitude:float address:string promoter:boolean deleted_at:datetime
+rails g model UserPhoto user:references file:has_attached_file description:text deleted_at:datetime
+rails g model Event venue:references user:references name:string description:text occur_at:datetime rating:integer deleted_at:datetime
+rails g model EventRating event:references user:references rating:integer deleted_at:datetime
+rails g model EventComment event:references user:references comment:text deleted_at:datetime
+rails g model EventPhoto event:references user_photo:references is_principal:boolean deleted_at:datetime
+rails g model EventPhotoComment event_photo:references user:references comment:text deleted_at:datetime
 
---- Pensei nessa entidade para...
 
+-- Estou em dúvida sobre criar a UserPhotoComment para que a foto do usuário também seja comentada, tipo so na página dele entende.

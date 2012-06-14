@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  venue: 
+  user: 
+  name: MyString
+  description: MyText
+  occur_at: 2012-06-14 16:37:58
+  rating: 1
+  deleted_at: 2012-06-14 16:37:58
+
+two:
+  venue: 
+  user: 
+  name: MyString
+  description: MyText
+  occur_at: 2012-06-14 16:37:58
+  rating: 1
+  deleted_at: 2012-06-14 16:37:58
