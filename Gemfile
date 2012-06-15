@@ -7,6 +7,7 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 gem 'mysql2'
+gem 'paperclip', '~> 3.0'
 
 
 # Gems used only for assets and not required
@@ -25,6 +26,10 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
 gem 'rack', '1.4.1'
+gem 'random_data'
+gem 'faker'
+gem 'image_suckr'
+gem 'geocoder'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

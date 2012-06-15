@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  file: 
+  description: MyText
+  deleted_at: 2012-06-14 16:37:53
+
+two:
+  user: 
+  file: 
+  description: MyText
+  deleted_at: 2012-06-14 16:37:53
