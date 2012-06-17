@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614193813) do
+ActiveRecord::Schema.define(:version => 20120617024844) do
 
   create_table "categories", :force => true do |t|
     t.string   "id_foursquare"
@@ -83,10 +83,13 @@ ActiveRecord::Schema.define(:version => 20120614193813) do
     t.string   "name"
     t.text     "description"
     t.datetime "occur_at"
-    t.integer  "rating"
+    t.float    "rating"
     t.datetime "deleted_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "users_count"
+    t.integer  "photos_count"
+    t.integer  "comments_count"
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"

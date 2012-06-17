@@ -35,6 +35,28 @@ p{ padding-bottom:25px;}
 
 /* ============================= header ====================== */
 header{ height:205px;}
+header h1#logo_container{
+  float: left;
+}
+header div#location_container{
+  float:right;
+}
+header div#location_container label{
+  color:#ccc;
+  font-size:10px;
+}
+
+header div#location_container #current_location{
+  padding:4px;
+  background-color:#000;
+  filter: alpha(opacity=70):
+  moz-opacity: .70;
+    opacity: .70;
+  border: 1px solid #7f7f7f;
+  color:#ccc;
+  font-size:11px;
+}
+
 
 #logo{ display:block; text-indent:-9999px; background:url(/assets/frontend/logo.png) 0 0 no-repeat; width:273px; height:86px;}
 

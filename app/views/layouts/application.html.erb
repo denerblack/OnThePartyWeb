@@ -26,7 +26,11 @@
 			<nav>
 				<%= top_menu %>
 			</nav>
-			<h1><a href="<%=root_path%>" id="logo">On The Party</a></h1>
+			<h1 id="logo_container"><a href="<%=root_path%>" id="logo">On The Party</a></h1>
+			<div id="location_container">
+				<%= label_tag :current_location, 'Filtre por cidade' %>
+				<%= text_field_tag :current_location, '' %>
+			</div>
 		</header>
 		<!--header end-->
 		<div class="box">
