@@ -1,14 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :user_location
+  helper_method :current_user, :current_location
 
-  def user_location
-    if current_user.nil?
-      {:latitude => request.location.latitude, :longitude => request.location.longitude}
-    else
-      {:latitude => current_user['latitude'], :longitude => current_user['longitude']}
-    end
+  def current_location
+    session[:current_location] ||= {:latitude => request.location.latitude, :longitude => request.location.longitude}
+    session[:current_location]
   end
 
   def current_user

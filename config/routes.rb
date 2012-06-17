@@ -4,6 +4,11 @@ OnTheParty::Application.routes.draw do
   root :to => 'home#index'
 
  # get "venues/find_by_id_foursquare"
+  resources :events do
+    member do
+      get 'live_data'
+    end
+  end
   resources :venues
   namespace :api do
     resources :venues
