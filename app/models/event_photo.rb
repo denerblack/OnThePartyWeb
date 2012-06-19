@@ -5,7 +5,7 @@ class EventPhoto < ActiveRecord::Base
 
   after_create :increment_counter
 
-  scope :random, order("rand()")
+  scope :random, order(random)
 
 
   def increment_counter

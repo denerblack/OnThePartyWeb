@@ -25,8 +25,8 @@ end
 
 
 1.upto(30) do
-  user = User.order("rand()").first
-  event = Event.create!(:venue => Venue.order("rand()").first,
+  user = User.order(Venue.random).first
+  event = Event.create!(:venue => Venue.order(Venue.random).first,
     :user => user,
     :name => Faker::Company.name,
     :description => Faker::Lorem.paragraphs(4),
