@@ -12,10 +12,13 @@ OnTheParty::Application.routes.draw do
   resources :venues
   namespace :api do
     resources :venues
-  #  match '/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'venues', :action => 'find_or_create', :format => 'json'
+    resources :events
   end
 
   match '/api/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'api/venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
+
+  match '/api/events/create/:venue_id/:user_id/:name/:description', :contoller => 'api/events', :action => 'create', :format => 'json'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
