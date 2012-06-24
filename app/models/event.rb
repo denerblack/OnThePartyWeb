@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   belongs_to :venue
   belongs_to :user
   has_many :event_photos
-  attr_accessible :deleted_at, :description, :name, :occur_at, :rating, :venue, :user, :users_count, :comments_count, :photos_count
+  attr_accessible :deleted_at, :description, :name, :occur_at, :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count
 
   scope :actives, where("events.updated_at >= ?",Time.now - 4.hours)
   scope :popular, order('events.rating DESC, events.users_count DESC, events.photos_count DESC, events.comments_count DESC')

@@ -11,13 +11,15 @@ OnTheParty::Application.routes.draw do
   end
   resources :venues
   namespace :api do
-    resources :venues
     resources :events
+    resources :venues
+    match '/events/create_event/:venue_id/:user_id/:name/:description', :controller => 'events', :action => 'create_event', :format => 'json'
+    match '/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
   end
 
-  match '/api/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'api/venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
+#  match '/api/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'api/venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
 
-  match '/api/events/create/:venue_id/:user_id/:name/:description', :contoller => 'api/events', :action => 'create', :format => 'json'
+#  match '/api/events/create_event/:venue_id/:user_id/:name/:description', :contoller => 'api/events', :action => 'create_event', :format => 'json'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,12 +1,9 @@
-class Api::EventsController < ApplicationController
-
-  def create
-    event = Event.crate(:venue_id => params[:venue_id],:user_id => params[:user_id], :name => params[:name], :description => params[:description])
-   
-  respond_to do |format|
-    format.json {render :json => event} 
-  end
-
+class Api::EventsController < ApplicationController 
+  def create_event
+    event = Event.create(:venue_id => params[:venue_id].to_i,:user_id => params[:user_id].to_i, :name => params[:name], :description => params[:description])
+    respond_to do |format|
+      format.json {render :json => event} 
+   end
   end
 
 end
