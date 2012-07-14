@@ -127,7 +127,7 @@ footer a:hover{ text-decoration:underline}
 #ContactForm .wrapper{ min-height:35px;}
 #ContactForm .textarea_box{ min-height:264px;}
 #ContactForm  span{ float:left; width:120px; line-height:30px;}
-#ContactForm .button{ margin-right:5px; float:right; font-size:25px; color:#7532a9; text-decoration:none;letter-spacing:-2px; padding:0 13px; line-height:26px; height:31px; background:#fff;box-shadow: 0 0 6px rgba(256, 256, 256, .5); -moz-box-shadow: 0 0 6px rgba(256, 256, 256, .5); -webkit-box-shadow:  0 0 6px rgba(256, 256, 256, .5); position: relative; margin-bottom:5px;}
+#ContactForm .button{ margin-right:5px; float:right; font-size:25px; color:#7532a9; text-decoration:none;letter-spacing:-2px; padding:0 13px; line-height:26px; height:31px; background:#fff;box-shadow: 0 0 6px rgba(255, 255, 255, .5); -moz-box-shadow: 0 0 6px rgba(255, 255, 255, .5); -webkit-box-shadow:  0 0 6px rgba(255, 255, 255, .5); position: relative; margin-bottom:5px;}
 #ContactForm .button:hover{ background: url(/assets/frontend/menu_active.gif) top repeat-x; color:#fff;box-shadow: 0 0 6px rgba(152, 103, 190, .5); -moz-box-shadow: 0 0 6px rgba(152, 103, 190, .5); -webkit-box-shadow:  0 0 6px rgba(152, 103, 190, .5)}
 #ContactForm .input { margin:0;width:360px; height:16px; background:#fff; padding:7px 10px;color:#474747; font:14px Arial, Helvetica, sans-serif; margin:0}
 #ContactForm textarea { overflow: auto; margin:0;width:720px; height:230px; background:#fff; padding:7px 10px;color:#474747; font:14px Arial, Helvetica, sans-serif;}
