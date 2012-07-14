@@ -149,7 +149,7 @@ header div#location_container label{
 header div#location_container #current_location{
   padding:4px;
   background-color:#000;
-  filter: alpha(opacity=70):
+  filter: alpha(opacity=70);
   moz-opacity: .70;
     opacity: .70;
   border: 1px solid #7f7f7f;
@@ -165,7 +165,7 @@ header div#location_container #current_location{
 .event_box .counters{
   position: absolute;
   background-color:#000;
-  filter: alpha(opacity=70):
+  filter: alpha(opacity=70);
   moz-opacity: .70;
   opacity: .70;
   width: 260px;
@@ -193,7 +193,7 @@ header div#location_container #current_location{
 .event_box .informations{
   position: absolute;
   background-color:#000;
-  filter: alpha(opacity=70):
+  filter: alpha(opacity=70);
   moz-opacity: .70;
   opacity: .70;
   width: 260px;
