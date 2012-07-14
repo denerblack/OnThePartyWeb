@@ -6,4 +6,10 @@ class Api::EventsController < ApplicationController
    end
   end
 
+  def find_by_venue_and_time
+    event = Event.find_by_venue_and_time(params[:venue_id],params[:time].to_time)
+    respond_to do |format|
+      format.json {render :json => event} 
+    end
+  end
 end
