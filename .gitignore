@@ -35,3 +35,5 @@ pickle-email-*.html
 schema.rb
 .DS_Store
 config/database.yml
+public/assets
+config/setup_load_paths.rb
