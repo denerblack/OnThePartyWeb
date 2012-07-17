@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120617024844) do
+ActiveRecord::Schema.define(:version => 20120716234006) do
 
   create_table "categories", :force => true do |t|
     t.string   "id_foursquare"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(:version => 20120617024844) do
   add_index "event_ratings", ["event_id"], :name => "index_event_ratings_on_event_id"
   add_index "event_ratings", ["user_id"], :name => "index_event_ratings_on_user_id"
 
+  create_table "event_users", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "event_users", ["event_id"], :name => "index_event_users_on_event_id"
+  add_index "event_users", ["user_id"], :name => "index_event_users_on_user_id"
+
   create_table "events", :force => true do |t|
     t.integer  "venue_id"
     t.integer  "user_id"
@@ -123,6 +133,16 @@ ActiveRecord::Schema.define(:version => 20120617024844) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "venue_users", :force => true do |t|
+    t.integer  "venue_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "venue_users", ["user_id"], :name => "index_venue_users_on_user_id"
+  add_index "venue_users", ["venue_id"], :name => "index_venue_users_on_venue_id"
 
   create_table "venues", :force => true do |t|
     t.string   "id_foursquare"
