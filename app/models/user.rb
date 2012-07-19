@@ -4,4 +4,10 @@ class User < ActiveRecord::Base
 
   # geocoded_by :full_street_address
   # after_validation :geocode 
+  def to_api
+    {
+      id: self.id,
+      name: self.name
+    }
+  end
 end

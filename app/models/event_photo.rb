@@ -7,6 +7,13 @@ class EventPhoto < ActiveRecord::Base
 
   scope :random, order("rand()")
 
+  def to_api
+    {
+      id: self.id,
+      thumb: self.user_photo.file.url(:thumb),
+      medium: self.user_photo.file.url(:medium)
+    }
+  end
 
   def increment_counter
     self.event.photos_count = self.event.photos_count.to_i + 1

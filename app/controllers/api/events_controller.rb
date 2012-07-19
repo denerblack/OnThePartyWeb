@@ -12,4 +12,20 @@ class Api::EventsController < ApplicationController
       format.json {render :json => event} 
     end
   end
+  
+  def index
+    events = []
+    
+    unless params[:venue_id]
+      events = Event.actives
+    else
+      events = Event.where(venue_id: params[:venue_id]).actives
+    end
+
+    # puts events.collect{|t| t.to_api}.inspect
+    
+    respond_to do |format|
+      format.json { render json: events.collect{|t| t.to_api} }
+    end
+  end
 end

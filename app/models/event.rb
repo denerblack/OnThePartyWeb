@@ -1,17 +1,47 @@
 class Event < ActiveRecord::Base
+  default_scope where("deleted_at IS NULL")
   belongs_to :venue
   belongs_to :user
   has_many :event_photos
   has_many :event_users
-  attr_accessible :deletedd_at, :description, :name, :occur_at, :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count
+  has_many :event_comments
+  attr_accessible :deleted_at, :description, :name, :occur_at, 
+  :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count
 
   scope :actives, where("events.updated_at >= ?",Time.now - 4.hours)
   scope :popular, order('events.rating DESC, events.users_count DESC, events.photos_count DESC, events.comments_count DESC')
   scope :with_photos, where("events.photos_count > 0")
 
+  def to_api
+    result = {
+      name: self.name,
+      description: self.description,
+      occur_at: self.occur_at,
+      rating: self.rating,
+      users_count: self.users_count,
+      photos_count: self.photos_count,
+      comments_count: self.comments_count,
+      user: self.user.to_api,
+      venue: {
+        name: self.venue.name,
+        id: self.venue_id
+      },
+      photos: [],
+      users: [],
+      comments: [],
+    }
+    
+    
+    
+    result[:photos] = self.event_photos.limit(5).collect{|t| t.to_api} unless self.event_photos.blank?
+    result[:users] = self.event_users.limit(5).collect{|t| t.to_api} unless self.event_users.blank?
+    result[:comments] = self.event_comments.limit(5).collect{|t| t.to_api} unless self.event_comments.blank?
+    
+  end
+
   class << self
     def find_by_venue_and(venue_id,time)
-      Event.where(["venue_id = ? and ? between occur_an and deleted_at", venue_id,time]).first
+      Event.where(["venue_id = ? and ? between occur_at and deleted_at", venue_id,time]).first
     end
   end
 

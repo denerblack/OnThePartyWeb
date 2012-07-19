@@ -17,10 +17,11 @@ end
     :password => 'otp2012',
     :latitude => point_user[0], :longitude => point_user[1]
   )
-  venue = Venue.create!(:name => Faker::Company.name,
+  venue = Venue.new(:name => Faker::Company.name,
     :latitude => point_venue[0], :longitude => point_venue[1],
     :address => Faker::Address.street_address(true)
   )
+  venue.save(validate: false)
 end
 
 
