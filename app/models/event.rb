@@ -22,10 +22,6 @@ class Event < ActiveRecord::Base
       photos_count: self.photos_count,
       comments_count: self.comments_count,
       user: self.user.to_api,
-      venue: {
-        name: self.venue.name,
-        id: self.venue_id
-      },
       photos: [],
       users: [],
       comments: [],

@@ -12,9 +12,11 @@ OnTheParty::Application.routes.draw do
   resources :venues
   namespace :api do
     resources :events
-    resources :venues
+    resources :venues do
+      post :find_or_create, on: :collection
+    end
     match '/events/create_event/:venue_id/:user_id/:name/:description', :controller => 'events', :action => 'create_event', :format => 'json'
-    match '/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
+    # match '/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
   end
 
 #  match '/api/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'api/venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
