@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.find_actives_by_venue_id(venue_id)
-     Event.where(["venue_id = ? and events.update_at >= ?", venue_id,Time.now - 4.hours])
+     Event.actives.where(:venue_id: venue_id)
   end
 
   def to_param
