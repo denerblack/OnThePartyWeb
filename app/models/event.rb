@@ -35,10 +35,8 @@ class Event < ActiveRecord::Base
     
   end
 
-  class << self
-    def find_by_venue_and(venue_id,time)
-      Event.where(["venue_id = ? and ? between occur_at and deleted_at", venue_id,time]).first
-    end
+  def self.find_actives_by_venue_id(venue_id)
+     Event.where(["venue_id = ? and events.update_at >= ?", venue_id,Time.now - 4.hours])
   end
 
   def to_param
