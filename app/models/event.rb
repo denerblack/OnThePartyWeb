@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.find_actives_by_venue_id(venue_id)
-     Event.actives.where(:venue_id: venue_id)
+     Event.actives.where(venue_id: venue_id)
   end
 
   def to_param
