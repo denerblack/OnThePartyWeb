@@ -19,7 +19,7 @@ class Venue < ActiveRecord::Base
     venue.save
 
     category = Category.where(id_foursquare: foursquare_params[:category][:id_foursquare]).first
-    category = Category.new(id_foursquare: foursquare_params[:category][:id_foursquare]).first unless category
+    category = Category.new(id_foursquare: foursquare_params[:category][:id_foursquare]) unless category
     category.attributes = {
       icon_name: foursquare_params[:category][:icon_name],
       icon_prefix: foursquare_params[:category][:icon_prefix],
