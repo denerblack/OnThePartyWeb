@@ -178,8 +178,8 @@ header div#location_container #current_location{
   font-size:40px;
   color:#fff;
   font-weight:bold;
-  left: 10px;
-  width: 240px;
+  left: 1px;
+  width: 258px;
 }
 
 .event_box .photos_count{

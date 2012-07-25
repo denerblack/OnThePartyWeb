@@ -5,12 +5,25 @@ class Event < ActiveRecord::Base
   has_many :event_photos
   has_many :event_users
   has_many :event_comments
+  delegate :latitude, :longitude, :address, to: :venue
+
   attr_accessible :deleted_at, :description, :name, :occur_at, 
-  :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count
+  :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count,
+  :latitude, :longitude, :address
 
   scope :actives, where("events.updated_at >= ?",Time.now - 4.hours)
-  scope :popular, order('events.rating DESC, events.users_count DESC, events.photos_count DESC, events.comments_count DESC')
+  scope :popular, order('events.users_count DESC, events.photos_count DESC, events.comments_count DESC')
   scope :with_photos, where("events.photos_count > 0")
+
+
+  def self.close_to(latitude,longitude,limit=3)
+    Event.select("events.*, ( 3959 * ACOS( COS( RADIANS( #{latitude} ) ) * COS( RADIANS( latitude ) ) * COS( RADIANS( longitude ) - RADIANS( #{longitude} ) ) + SIN( RADIANS( #{latitude} ) ) * SIN( RADIANS( latitude ) ) ) ) AS distance").
+    joins(:venue).
+    with_photos.actives.
+    limit(limit).
+    order('distance')
+    # order('distance')
+  end
 
   def to_api
     result = {
