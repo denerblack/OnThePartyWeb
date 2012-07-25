@@ -24,8 +24,8 @@ $(function(){
 				<div class="photos_count"></div>
 			</div>
 			<div class="informations">
-				Evento: <strong><%= truncate(event.name) %></strong><br />
-				Em: <strong><%= truncate(event.venue.name) %></strong></br >
+				Evento: <strong><%= truncate(event.name, length: 24) %></strong><br />
+				Em: <strong><%= truncate(event.venue.name, length: 24) %></strong></br >
 			</div>
 		</div>
 		<% end -%>
@@ -43,8 +43,8 @@ $(function(){
 				<div class="photos_count"></div>
 			</div>
 			<div class="informations">
-				Evento: <strong><%= truncate(event.name) %></strong><br />
-				Em: <strong><%= truncate(event.venue.name) %></strong></br >
+				Evento: <strong><%= truncate(event.name, length: 24) %></strong><br />
+				Em: <strong><%= truncate(event.venue.name, length: 24) %></strong></br >
 			</div>
 		</div>
 		<% end -%>
