@@ -34,6 +34,7 @@ class Venue < ActiveRecord::Base
     venue.reload
     venue
   end
+  #curl -d "foursquare[id_foursquare]=four123&foursquare[nane]=teste&foursquare[latitude]=123&foursquare[longitude]=123&foursquare[category][id_foursquare]=cate123" http://localhost:3000/api/venues/find_or_createfoursquare
 
   def to_api
     result = {
