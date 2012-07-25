@@ -6,10 +6,11 @@ class Api::EventsController < ApplicationController
    end
   end
 
-  def find_by_venue_and_time
-    event = Event.find_by_venue_and_time(params[:venue_id],params[:time].to_time)
+  def find_actives_by_venue_id
+    events = Event.find_actives_by_venue_id(params[:venue_id])
     respond_to do |format|
-      format.json {render :json => event} 
+      #format.json {render :json => event} 
+      format.json { render json: events.collect{|t| t.to_api} }
     end
   end
   
