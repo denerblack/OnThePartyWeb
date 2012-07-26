@@ -9,6 +9,13 @@ Dir.entries(File.join(Rails.root, 'db', 'seeds_data','event_photos')).each do |i
   images << File.join(Rails.root, 'db', 'seeds_data','event_photos', image)
 end
 
+Dir.entries(File.join(Rails.root, 'db', 'seeds_data','banners')).each do |image|
+  next if image == '.' || image == '..'
+  Banner.create(file: File.open(File.join(Rails.root, 'db', 'seeds_data','banners', image)), 
+    url: Faker::Internet.domain_name,
+    description: Faker::Name.name)
+end
+
 1.upto(10) do
   point_user = points[Random.number(points.size)]
   point_venue = points[Random.number(points.size)]

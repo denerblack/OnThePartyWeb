@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @banners = Banner.order('created_at DESC').limit(3)
+
     Event.all.each{|t| t.update_attribute(:users_count, (1+rand(9999)));t.touch}
     events = Event.close_to(current_location[:latitude],current_location[:longitude],6)
     @close_events = []
