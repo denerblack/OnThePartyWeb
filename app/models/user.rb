@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
       name: self.name
     }
   end
+
+  def self.find_or_create(user_params)
+    user = User.where(facebook: user_params[:facebook]).first
+    user = User.create(facebook: user_params[:facebook], name: user_params[:name]) unless user
+  end
+
 end
