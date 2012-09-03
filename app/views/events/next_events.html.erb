@@ -1,0 +1,39 @@
+<script type="text/javascript">
+$(function(){
+  $('.event_box').each(function(){
+    var event_box = $(this)
+    $.getJSON($(this).attr('event_data'),function(data){
+      // console.log(data);
+      event_box.find('.informations:first').append('Avaliação: <strong>'+data.rating+' estrelas</strong>');
+
+      // $('<span class="photos_count"></span>').html();
+    })
+  })
+})
+</script>
+<div class="wrapper">
+  <h2>Vai bombar!</h2>
+  <!-- <p>Confira o que vai rolar perto de você!</p> -->
+  <div class="wrapper">
+    <% @next_events.in_groups_of(3,false).each do |events_grouped| %>
+      <% events_grouped.each do |event| %>
+      <div event_data="<%=live_data_event_path(event.id)%>" class="cols event_box <%='marg_right1' if event != events_grouped.last %>">
+        <figure class="pad_bot2"><%= link_to image_tag(event.event_photos.random.first.user_photo.file.url(:medium)), event %></figure>
+        <!-- <div class="counters"> -->
+          <div class="occur_info">
+            <%= l event.occur_at.to_date %><br />
+            <%= event.occur_at.strftime("%H:%M") %>
+          </div>
+        <!-- </div> -->
+        <div class="informations">
+          Evento: <strong><%= truncate(event.name, length: 24) %></strong><br />
+          Em: <strong><%= truncate(event.venue.name, length: 24) %></strong></br >
+        </div>
+      </div>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>
+<div class="wrapper">
+<h2><strong><%= will_paginate @next_events %></strong></h2>
+</div>

@@ -7,22 +7,37 @@ class Event < ActiveRecord::Base
   has_many :event_comments
   delegate :latitude, :longitude, :address, to: :venue
 
+  attr_accessor :first_photo
   attr_accessible :deleted_at, :description, :name, :occur_at, 
-  :rating, :venue, :venue_id, :user, :user_id, :users_count, :comments_count, :photos_count,
-  :latitude, :longitude, :address
+  :latitude, :longitude, :address, :first_photo, :venue_id
 
-  scope :actives, where("events.updated_at >= ?",Time.now - 4.hours)
+  scope :next_events, where("events.occur_at >= ?",Time.now - 30.minutes).order('occur_at')
+  scope :actives, where("events.updated_at >= ? AND events.occur_at <= ? ",Time.now - 4.hours,Time.now)
   scope :popular, order('events.users_count DESC, events.photos_count DESC, events.comments_count DESC')
   scope :with_photos, where("events.photos_count > 0")
 
+  validates_presence_of :name, :occur_at, :description
+  validates_presence_of :user_id, on: :update
 
-  def self.close_to(latitude,longitude,limit=3)
+
+  def self.close_to_without_order(latitude,longitude)
     Event.select("events.*, ( 3959 * ACOS( COS( RADIANS( #{latitude} ) ) * COS( RADIANS( latitude ) ) * COS( RADIANS( longitude ) - RADIANS( #{longitude} ) ) + SIN( RADIANS( #{latitude} ) ) * SIN( RADIANS( latitude ) ) ) ) AS distance").
     joins(:venue).
-    with_photos.actives.
-    limit(limit).
-    order('distance')
-    # order('distance')
+    with_photos
+  end
+
+  def self.close_to(latitude,longitude)
+    self.close_to_without_order(latitude,longitude).order('distance')
+  end
+
+  def self.ranking(events)
+    events = events.sort do |a,b|
+      comp = (a.users_count <=> b.users_count)
+      comp = comp.zero? ? (a.photos_count <=> b.photos_count) : comp
+      comp.zero? ? (a.comments_count <=> b.comments_count) : comp
+    end
+    events = events.reverse
+    events
   end
 
   def to_api

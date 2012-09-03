@@ -1,20 +1,26 @@
 OnTheParty::Application.routes.draw do
+  devise_for :users
+
   match "random-login" => "users#random_login", :as => :random_login
 
   root :to => 'home#index'
 
  # get "venues/find_by_id_foursquare"
-  resources :events do
-    member do
-      get 'live_data'
-    end
+  resources :events, path: 'eventos' do
+    get :live_data, on: :member
   end
+  match 'perto-de-voce' => "events#close_to_user", as: :close_to_user
+  match 'vai-bombar' => "events#next_events", as: :next_events
   resources :venues
   namespace :api do
     resources :events
     resources :venues do
       post :find_or_create, on: :collection
     end
+    resources :users do
+      post :find_or_create, on: :collection
+    end
+
     match '/events/create_event/:venue_id/:user_id/:name/:description', :controller => 'events', :action => 'create_event', :format => 'json'
     match '/events/find_actives_by_venue_id/:venue_id/', :controller => 'events', :action => 'find_actives_by_venue_id', :format => 'json'
     # match '/venues/find_or_create/:id_foursquare/:name/:contact/:address/:latitude/:longitude/:country/:category_id', :controller => 'venues', :action => 'find_or_create', :constraints => {:latitude =>/.*/, :longitude => /.*/}, :format => 'json'
