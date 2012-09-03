@@ -9,12 +9,12 @@ class Venue < ActiveRecord::Base
   validates :longitude, presence: true
 
   def self.find_or_create(foursquare_params)
-    venue = Venue.where(id_foursquare: foursquare_params[:id_foursquare]).first
-    venue = Venue.new(id_foursquare: foursquare_params[:id_foursquare]) unless venue
+    venue = Venue.where(id_foursquare: foursquare_params[:venue][:id_foursquare]).first
+    venue = Venue.new(id_foursquare: foursquare_params[:venue][:id_foursquare]) unless venue
     venue.attributes = {
-      name: foursquare_params[:name],
-      latitude: foursquare_params[:latitude],
-      longitude: foursquare_params[:longitude],
+      name: foursquare_params[:venue][:name],
+      latitude: foursquare_params[:venue][:latitude],
+      longitude: foursquare_params[:venue][:longitude],
     }
     venue.save
 
