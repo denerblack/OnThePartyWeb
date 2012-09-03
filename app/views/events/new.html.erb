@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <h2><strong>Por quê eu deveria promover minha festa aqui?</strong></h2>
+  <p>Se você quer promover sua festa conosco aqui vão algumas de nossas informações:</p>
+  <ul>
+    <li>É de <span class="color2">GRAÇA!</span></li>
+    <li>O alcance será tanto na cidade do evento quanto nas proximidades</li>
+    <li>Nos celulares de nossos usuários o evento será exibido para que eles compareçam</li>
+    <li>Você possuirá um medidor para saber se o evento está bom podendo assim tomar alguma providência</li>
+  </ul>
+  <h2><strong>Não perca tempo</strong>, promova seu evento preenchendo o formulário abaixo</h2>
+  <%= form_for @event, html: {id: "ContactForm"} do |f| -%>
+  <%= f.error_messages %>
+    <div>
+      <div class="wrapper">
+        <span><%= f.label :name %></span>
+        <%= f.text_field :name, class: :input %>
+      </div>
+      <div class="wrapper">
+        <span><%= f.label :occur_at %></span>
+        <%= f.datetime_select :occur_at, default: 1.day.from_now %>
+      </div>
+      <div class="wrapper">
+        <span><%= f.label :venue_id %></span>
+        <%= f.collection_select :venue_id, Venue.order(:name).all, :id, :name, include_blank: true %>
+      </div>
+      <div class="textarea_box">
+        <span><%= f.label :description %></span>
+        <%= f.text_area :description %>
+      </div>
+      <a href="#" class="button" onClick="$('#ContactForm').submit()">Enviar</a>
+    </div>
+  <% end -%>
+
+</div>

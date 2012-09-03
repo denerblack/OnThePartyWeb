@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,6 +8,8 @@ gem 'rails', '3.2.3'
 #gem 'pg'
 gem 'mysql2'
 gem 'paperclip', '~> 3.0'
+gem 'will_paginate'
+gem 'devise'
 
 
 # Gems used only for assets and not required

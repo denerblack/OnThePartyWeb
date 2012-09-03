@@ -7,9 +7,9 @@ module ApplicationHelper
 	def top_menu
 		links = [
 			['Tá rolando', root_path],
-			['Vai bombar', root_path],
+			['Vai bombar', next_events_path],
 			['Galeria', root_path],
-			['Perto de você', root_path],
+			['Perto de você', close_to_user_path],
 			['Promoções', root_path],
 			['Fala aí!', root_path],
 		]

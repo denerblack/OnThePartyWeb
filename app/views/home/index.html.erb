@@ -73,22 +73,18 @@ $(function(){
 		<h2>Próximos eventos</h2>
 		<div id="gallery1">
 			<ul>
+				<% @next_events.each do |event| %>
 				<li>
-					<span class="dropcap_1">30<span>august</span></span>
-					<p><span class="color1">Lorem ipsum dolor sit amet</span><br>
-							adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-							<a href="#" class="link1">View Details</a></p>
+					<span class="dropcap_1"><%= event.occur_at.day %><span><%= t('date.abbr_month_names')[event.occur_at.month] %></span></span>
+					<p><span class="color1"><%= event.name %></span><br>
+							<%= truncate event.description, length: 80 %><br>
+							<a href="<%= event_path event %>" class="link1">Detalhes</a></p>
 				</li>
-				<li>
-					<span class="dropcap_1">26<span>august</span></span>
-					<p><span class="color1">Ut enim ad minim veniam nostrud</span><br>
-							Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
-							<a href="#" class="link1">View Details</a></p>
-				</li>
+				<% end -%>
 			</ul>
 		</div>
-		<a href="#" class="next"></a>
-		<a href="#" class="prev"></a>
+		<a href="#" class="next" title="avançar"></a>
+		<a href="#" class="prev" title="voltar"></a>
 	</section>
 </div>
 

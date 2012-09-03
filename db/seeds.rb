@@ -34,15 +34,16 @@ end
 
 1.upto(30) do
   user = User.order("rand()").first
-  event = Event.create!(:venue => Venue.order("rand()").first,
-    :user => user,
-    :name => Faker::Company.name,
+  event = Event.new(:name => Faker::Company.name,
     :description => Faker::Lorem.paragraphs(4),
-    :occur_at => Random.date,
-    :users_count => Random.number(99),
-    :rating => Random.number(6),
-    :comments_count => Random.number(99)
+    :occur_at => Random.date    
   )
+  event.venue = Venue.order("rand()").first
+  event.user = user
+  event.users_count = Random.number(99)
+  event.rating = Random.number(6)
+  event.comments_count = Random.number(99)
+  event.save!
 
   1.upto(Random.number(images.size)) do
     UserPhoto.create_with_event(File.open(images[Random.number(images.size)]), user, event)

@@ -173,7 +173,7 @@ header div#location_container #current_location{
   top:10px;
 }
 
-.event_box .photos_count, .event_box .users_count{
+.event_box .photos_count, .event_box .users_count, .event_box .occur_info{
   position: absolute;
   font-size:40px;
   color:#fff;
@@ -188,6 +188,13 @@ header div#location_container #current_location{
 
 .event_box .users_count{
   top:8px;
+}
+
+.event_box .occur_info{
+  line-height: 40px;
+  top:10px;
+  left:10px;
+  font-size:44px;
 }
 
 .event_box .informations{
