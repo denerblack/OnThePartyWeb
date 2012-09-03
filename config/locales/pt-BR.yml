@@ -58,7 +58,7 @@ pt-BR:
   # formatos de data e hora
   date:
     formats:
-      default: "%d/%m/%Y"
+      default: "%d.%m.%Y"
       short: "%d de %B"
       long: "%d de %B de %Y"
       file: "%d-%m-%Y"

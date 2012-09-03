@@ -25,12 +25,17 @@ class EventsController < ApplicationController
     paginate(page: params[:page], per_page: 9)
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @event = Event.new
   end
 
   def create
     @event = Event.new(params[:event])
+    @event.user_id = current_user.id if user_signed_in?
     if @event.save
       session[:events_created] ||= []
       session[:events_created] << @event.id

@@ -4,8 +4,10 @@ class UserPhoto < ActiveRecord::Base
 
   has_attached_file :file, :styles => { 
     :medium => "260x292#", 
-    :thumb => "75x75#"
-  }
+    :list => "260x171#", 
+    :thumb => "75x75#",
+    :big => "860x455#"
+  }, default_style: :thumb
 
   def self.create_with_event(file_path, user, event)
     # EventPhoto.transaction do 

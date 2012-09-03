@@ -1,4 +1,6 @@
 OnTheParty::Application.routes.draw do
+  devise_for :users
+
   match "random-login" => "users#random_login", :as => :random_login
 
   root :to => 'home#index'
