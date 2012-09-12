@@ -86,7 +86,7 @@ class Event < ActiveRecord::Base
     result[:photos] = self.event_photos.limit(5).collect{|t| t.to_api} unless self.event_photos.blank?
     result[:users] = self.event_users.limit(5).collect{|t| t.to_api} unless self.event_users.blank?
     result[:comments] = self.event_comments.limit(5).collect{|t| t.to_api} unless self.event_comments.blank?
-    
+    result  
   end
 
   def self.find_actives_by_venue_id(venue_id)
