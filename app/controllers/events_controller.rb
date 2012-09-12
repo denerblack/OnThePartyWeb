@@ -33,13 +33,28 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def edit
+    @event = Event.find(session[:events_created].last)
+    @event.user_photos.build if @event.user_photos.blank?
+  end
+
+  def update
+    @event = Event.find(session[:events_created].last)
+    @event.user_id = current_user.id
+    if @event.update_with_first_photo(params[:event],params[:first_photo])
+      redirect_to event_path(@event)
+    else
+      raise @event.errors.inspect
+    end
+  end
+
   def create
     @event = Event.new(params[:event])
-    @event.user_id = current_user.id if user_signed_in?
+    # @event.user_id = current_user.id if user_signed_in?
     if @event.save
       session[:events_created] ||= []
       session[:events_created] << @event.id
-      redirect_to next_events_path, notice: 'Evento criado com sucesso'
+      redirect_to edit_event_path(:atual), notice: 'Evento criado com sucesso'
     else
       render action: :new
     end

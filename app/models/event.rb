@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :venue
   belongs_to :user
   has_many :event_photos
+  has_many :user_photos, through: :event_photos
   has_many :event_users
   has_many :event_comments
   delegate :latitude, :longitude, :address, to: :venue
@@ -19,6 +20,31 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :occur_at, :description
   validates_presence_of :user_id, on: :update
 
+  before_create :set_before_create
+  after_save :set_first_user
+
+  def set_before_create
+    self.photos_count ||= 0
+    self.comments_count ||= 0
+    self.rating ||= 0
+    true
+  end
+
+  def set_first_user
+    return true unless self.users_count.blank?
+    self.event_users.build(user_id: self.user_id).save
+  end
+
+  def update_with_first_photo(params,first_photo = nil)
+    if first_photo
+      user_photo = self.user_photos.build(file: first_photo)
+      user_photo.user_id = self.user_id
+      user_photo.save!
+      self.event_photos.build(user_photo: user_photo, is_principal: true).save!
+    end
+    self.attributes = params
+    self.save!
+  end
 
   def self.close_to_without_order(latitude,longitude)
     Event.select("events.*, ( 3959 * ACOS( COS( RADIANS( #{latitude} ) ) * COS( RADIANS( latitude ) ) * COS( RADIANS( longitude ) - RADIANS( #{longitude} ) ) + SIN( RADIANS( #{latitude} ) ) * SIN( RADIANS( latitude ) ) ) ) AS distance").
@@ -68,7 +94,11 @@ class Event < ActiveRecord::Base
   end
 
   def to_param
-    [self.id,self.name.parameterize,'em',self.venue.name.parameterize].join('-')
+    if self.venue
+      [self.id,self.name,'em',self.venue.name].join('-').parameterize
+    else
+      [self.id,self.name].join('-').parameterize
+    end
   end
 
   def self.checkin(user_id,checkin_attributes)

@@ -3,7 +3,7 @@
   <div class="wrapper pad_bot1">
     <figure class="left marg_right1"><%= image_tag(@event.event_photos.random.first.user_photo.file.url(:medium)) %></figure>
     <p class="no_pad_bot">Dia e horário: <span class="color1"><%= l @event.occur_at, format: :long %></span></p>
-    <p class="no_pad_bot">Local: <span class="color1"><%= @event.venue.name %></span></p>
+    <p class="no_pad_bot">Local: <span class="color1"><%= @event.venue.name if @event.venue %></span></p>
     <p class="no_pad_bot">Criador: <span class="color1"><%= @event.user.name %></span></p>
     <p class="no_pad_bot">Números: 
       <span class="color1">

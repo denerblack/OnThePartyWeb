@@ -1,0 +1,32 @@
+<div class="wrapper">
+  <h2><strong>Alterando evento</strong>, promova seu evento preenchendo o formulário abaixo</h2>
+  <%= form_for @event, html: {id: "ContactForm", multipart: true} do |f| -%>
+  <%= f.error_messages %>
+    <div>
+      <div class="wrapper">
+        <span><%= f.label :name %></span>
+        <%= f.text_field :name, class: :input %>
+      </div>
+      <div class="wrapper">
+        <span><%= f.label :occur_at %></span>
+        <%= f.datetime_select :occur_at, default: 1.day.from_now %>
+      </div>
+      <div class="wrapper">
+        <span><%= f.label :venue_id %></span>
+        <%= f.collection_select :venue_id, Venue.order(:name).all, :id, :name, include_blank: true %>
+      </div>
+      <div class="wrapper">
+        <span><%= label_tag :first_photo %></span>
+        <%= file_field_tag :first_photo, class: :input %>
+      </div>
+      <div class="textarea_box">
+        <span><%= f.label :description %></span>
+        <%= f.text_area :description %>
+      </div>
+
+      
+      <a href="#" class="button" onClick="$('#ContactForm').submit()">Salvar</a>
+    </div>
+  <% end -%>
+
+</div>
