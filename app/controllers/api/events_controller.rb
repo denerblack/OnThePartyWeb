@@ -29,4 +29,13 @@ class Api::EventsController < ApplicationController
       format.json { render json: events.collect{|t| t.to_api} }
     end
   end
+  
+  def close_to
+    events = Event.close_to(params[:latitude],params[:longitude])
+    respond_to do |format|
+      format.json { render json: events.collect{|t| t.to_api}}
+    end
+  end
+
+
 end
